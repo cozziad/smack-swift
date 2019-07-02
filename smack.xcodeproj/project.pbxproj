@@ -11,6 +11,8 @@
 		7519325422CBFF0900FFF7DD /* ChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7519325322CBFF0900FFF7DD /* ChannelViewController.swift */; };
 		7519325B22CC03C700FFF7DD /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7519325922CC03C600FFF7DD /* SWRevealViewController.m */; };
 		7519325D22CC0FD200FFF7DD /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7519325C22CC0FD200FFF7DD /* GradientView.swift */; };
+		7519326022CC1F2800FFF7DD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7519325F22CC1F2800FFF7DD /* Constants.swift */; };
+		7519326222CC253400FFF7DD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7519326122CC253300FFF7DD /* LoginViewController.swift */; };
 		755B0BCE22CBEF510032D803 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755B0BCD22CBEF510032D803 /* AppDelegate.swift */; };
 		755B0BD322CBEF510032D803 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 755B0BD122CBEF510032D803 /* Main.storyboard */; };
 		755B0BD522CBEF570032D803 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 755B0BD422CBEF570032D803 /* Assets.xcassets */; };
@@ -26,6 +28,8 @@
 		7519325922CC03C600FFF7DD /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		7519325A22CC03C700FFF7DD /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		7519325C22CC0FD200FFF7DD /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		7519325F22CC1F2800FFF7DD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		7519326122CC253300FFF7DD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		755B0BCA22CBEF510032D803 /* smack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = smack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		755B0BCD22CBEF510032D803 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		755B0BD222CBEF510032D803 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -82,6 +86,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		7519325E22CC1F1400FFF7DD /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				7519325F22CC1F2800FFF7DD /* Constants.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		755B0BC122CBEF500032D803 = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +115,7 @@
 		755B0BCC22CBEF510032D803 /* smack */ = {
 			isa = PBXGroup;
 			children = (
+				7519325E22CC1F1400FFF7DD /* Utilities */,
 				7519324A22CBFBF800FFF7DD /* Supporting Files */,
 				7519325022CBFEC900FFF7DD /* Model */,
 				7519324F22CBFEA900FFF7DD /* View */,
@@ -121,6 +134,7 @@
 			children = (
 				7519325122CBFEFC00FFF7DD /* ChatViewController.swift */,
 				7519325322CBFF0900FFF7DD /* ChannelViewController.swift */,
+				7519326122CC253300FFF7DD /* LoginViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -252,11 +266,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7519326222CC253400FFF7DD /* LoginViewController.swift in Sources */,
 				755B0BCE22CBEF510032D803 /* AppDelegate.swift in Sources */,
 				7519325222CBFEFC00FFF7DD /* ChatViewController.swift in Sources */,
 				7519325D22CC0FD200FFF7DD /* GradientView.swift in Sources */,
 				7519325422CBFF0900FFF7DD /* ChannelViewController.swift in Sources */,
 				7519325B22CC03C700FFF7DD /* SWRevealViewController.m in Sources */,
+				7519326022CC1F2800FFF7DD /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
