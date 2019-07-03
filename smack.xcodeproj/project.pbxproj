@@ -13,6 +13,7 @@
 		7519325D22CC0FD200FFF7DD /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7519325C22CC0FD200FFF7DD /* GradientView.swift */; };
 		7519326022CC1F2800FFF7DD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7519325F22CC1F2800FFF7DD /* Constants.swift */; };
 		7519326222CC253400FFF7DD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7519326122CC253300FFF7DD /* LoginViewController.swift */; };
+		7519326422CC27B200FFF7DD /* createAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7519326322CC27B200FFF7DD /* createAccountViewController.swift */; };
 		755B0BCE22CBEF510032D803 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755B0BCD22CBEF510032D803 /* AppDelegate.swift */; };
 		755B0BD322CBEF510032D803 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 755B0BD122CBEF510032D803 /* Main.storyboard */; };
 		755B0BD522CBEF570032D803 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 755B0BD422CBEF570032D803 /* Assets.xcassets */; };
@@ -30,6 +31,7 @@
 		7519325C22CC0FD200FFF7DD /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		7519325F22CC1F2800FFF7DD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7519326122CC253300FFF7DD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		7519326322CC27B200FFF7DD /* createAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createAccountViewController.swift; sourceTree = "<group>"; };
 		755B0BCA22CBEF510032D803 /* smack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = smack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		755B0BCD22CBEF510032D803 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		755B0BD222CBEF510032D803 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				7519325122CBFEFC00FFF7DD /* ChatViewController.swift */,
 				7519325322CBFF0900FFF7DD /* ChannelViewController.swift */,
 				7519326122CC253300FFF7DD /* LoginViewController.swift */,
+				7519326322CC27B200FFF7DD /* createAccountViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				755B0BCE22CBEF510032D803 /* AppDelegate.swift in Sources */,
 				7519325222CBFEFC00FFF7DD /* ChatViewController.swift in Sources */,
 				7519325D22CC0FD200FFF7DD /* GradientView.swift in Sources */,
+				7519326422CC27B200FFF7DD /* createAccountViewController.swift in Sources */,
 				7519325422CBFF0900FFF7DD /* ChannelViewController.swift in Sources */,
 				7519325B22CC03C700FFF7DD /* SWRevealViewController.m in Sources */,
 				7519326022CC1F2800FFF7DD /* Constants.swift in Sources */,

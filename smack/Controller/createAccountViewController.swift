@@ -1,5 +1,5 @@
 //
-//  LoginViewController.swift
+//  createAccountViewController.swift
 //  smack
 //
 //  Created by Anthony Cozzi on 7/2/19.
@@ -8,18 +8,17 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class createAccountViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Do any additional setup after loading the view.
     }
     
     @IBAction func closePressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        performSegue(withIdentifier: FROM_CREATE_ACCOUNT_UNWIND, sender: nil)
     }
     
-    @IBAction func createAccountBtnPressed(_ sender: Any) {
-        performSegue(withIdentifier: TO_CREATE_ACCOUNT, sender: nil)
-    }
+
 }
