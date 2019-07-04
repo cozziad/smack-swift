@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		75132C8C22CE5F1600BCC606 /* UserDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75132C8B22CE5F1600BCC606 /* UserDataService.swift */; };
 		7519325222CBFEFC00FFF7DD /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7519325122CBFEFC00FFF7DD /* ChatViewController.swift */; };
 		7519325422CBFF0900FFF7DD /* ChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7519325322CBFF0900FFF7DD /* ChannelViewController.swift */; };
 		7519325B22CC03C700FFF7DD /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7519325922CC03C600FFF7DD /* SWRevealViewController.m */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		256C9E3D12C3753A701EBE78 /* Pods-smack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-smack.debug.xcconfig"; path = "Pods/Target Support Files/Pods-smack/Pods-smack.debug.xcconfig"; sourceTree = "<group>"; };
+		75132C8B22CE5F1600BCC606 /* UserDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataService.swift; sourceTree = "<group>"; };
 		7519325122CBFEFC00FFF7DD /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		7519325322CBFF0900FFF7DD /* ChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelViewController.swift; sourceTree = "<group>"; };
 		7519325822CC03C400FFF7DD /* smack-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "smack-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				7519326622CD59F400FFF7DD /* AuthService.swift */,
+				75132C8B22CE5F1600BCC606 /* UserDataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				7519326222CC253400FFF7DD /* LoginViewController.swift in Sources */,
 				7519326922CD8C0600FFF7DD /* RoundedButton.swift in Sources */,
 				755B0BCE22CBEF510032D803 /* AppDelegate.swift in Sources */,
+				75132C8C22CE5F1600BCC606 /* UserDataService.swift in Sources */,
 				7519325222CBFEFC00FFF7DD /* ChatViewController.swift in Sources */,
 				7519326722CD59F400FFF7DD /* AuthService.swift in Sources */,
 				7519325D22CC0FD200FFF7DD /* GradientView.swift in Sources */,
