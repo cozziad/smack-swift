@@ -93,6 +93,7 @@ class AuthService {
     }
     
     func createUser (avatarColor: String, avatarName: String, email:String, name:String,completion: @escaping CompletionHandler) {
+        self.isLoggedIn = false
         let lowerCaseEmail = email.lowercased()
         
         let body: [String: Any] = [
@@ -119,6 +120,7 @@ class AuthService {
                     let name = json["name"].stringValue
                     
                     UserDataService.instance.setUserData (id: id, avatarColor: avatarColor, avatarName: avatarName, email: email, name: name)
+                    self.isLoggedIn = true
                 }
                 catch{
                     debugPrint("Error reading json user add data")

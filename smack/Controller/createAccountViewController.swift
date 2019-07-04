@@ -61,8 +61,8 @@ class createAccountViewController: UIViewController {
                         AuthService.instance.createUser(avatarColor: self.avatarColor, avatarName: self.avatarName, email: email, name: name) { (success) in
                             if success {
                                 print("user created")
-                                self.performSegue(withIdentifier: FROM_CREATE_ACCOUNT_UNWIND, sender: nil)
                                 NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
+                                self.performSegue(withIdentifier: FROM_CREATE_ACCOUNT_UNWIND, sender: nil)
                             }
                             else {print("failed create")}
                         }
@@ -83,10 +83,11 @@ class createAccountViewController: UIViewController {
         let g = CGFloat(arc4random_uniform(255))/255
         let b = CGFloat(arc4random_uniform(255))/255
         bgColor = UIColor(red: r, green: g, blue: b, alpha: 1)
+        avatarColor = "[\(r),\(g),\(b),1]"
         UIView.animate(withDuration: 0.3){
             self.userImg.backgroundColor = self.bgColor
         }
-        //avatarColor = self.bgColor
+        
     }
     
     func setUpView(){
