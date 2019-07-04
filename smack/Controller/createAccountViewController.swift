@@ -29,11 +29,16 @@ class createAccountViewController: UIViewController {
     }
     
     @IBAction func createAccountPressed(_ sender: Any) {
-        print("press detected")
         guard let email = emailTxt.text, emailTxt.text != "" else {return}
         guard let pass = passwordTxt.text, passwordTxt.text != "" else {return}
         AuthService.instance.registerUser(email: email, password: pass) { (success) in
-            if success{ print("registered user")}
+            if success{
+                AuthService.instance.loginUser(email: email, password: pass) { (success) in
+                    if success {
+                        print("Logged In",AuthService.instance.authToken)
+                    }else {print("failed login")}
+                }
+            }
             else {print("failed register")}
         }
     }
