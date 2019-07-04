@@ -15,6 +15,7 @@
 		7519326222CC253400FFF7DD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7519326122CC253300FFF7DD /* LoginViewController.swift */; };
 		7519326422CC27B200FFF7DD /* createAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7519326322CC27B200FFF7DD /* createAccountViewController.swift */; };
 		7519326722CD59F400FFF7DD /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7519326622CD59F400FFF7DD /* AuthService.swift */; };
+		7519326922CD8C0600FFF7DD /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7519326822CD8C0500FFF7DD /* RoundedButton.swift */; };
 		755B0BCE22CBEF510032D803 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755B0BCD22CBEF510032D803 /* AppDelegate.swift */; };
 		755B0BD322CBEF510032D803 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 755B0BD122CBEF510032D803 /* Main.storyboard */; };
 		755B0BD522CBEF570032D803 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 755B0BD422CBEF570032D803 /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 		7519326122CC253300FFF7DD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7519326322CC27B200FFF7DD /* createAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createAccountViewController.swift; sourceTree = "<group>"; };
 		7519326622CD59F400FFF7DD /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		7519326822CD8C0500FFF7DD /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		755B0BCA22CBEF510032D803 /* smack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = smack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		755B0BCD22CBEF510032D803 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		755B0BD222CBEF510032D803 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				7519325C22CC0FD200FFF7DD /* GradientView.swift */,
+				7519326822CD8C0500FFF7DD /* RoundedButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7519326222CC253400FFF7DD /* LoginViewController.swift in Sources */,
+				7519326922CD8C0600FFF7DD /* RoundedButton.swift in Sources */,
 				755B0BCE22CBEF510032D803 /* AppDelegate.swift in Sources */,
 				7519325222CBFEFC00FFF7DD /* ChatViewController.swift in Sources */,
 				7519326722CD59F400FFF7DD /* AuthService.swift in Sources */,

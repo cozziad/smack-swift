@@ -11,7 +11,8 @@ import Foundation
 typealias CompletionHandler = (_ Success:Bool) -> ()
 
 //URL Constants
-let BASE_URL = "http://10.0.2.2:3005/v1/"
+//let BASE_URL = "http://10.0.2.2:3005/v1/"
+let BASE_URL = "http://localhost:3005/v1/"
 let URL_REGISTER = "\(BASE_URL)account/register"
 
 //Segues
