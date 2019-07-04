@@ -56,6 +56,7 @@ class createAccountViewController: UIViewController {
         }
     }
     @IBAction func chooseavatarPressed(_ sender: Any) {
+        performSegue(withIdentifier: TO_AVATAR_PICKER, sender: nil)
     }
     @IBAction func generateBackgroundPressed(_ sender: Any) {
     }
