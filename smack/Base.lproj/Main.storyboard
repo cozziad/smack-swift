@@ -104,6 +104,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wJs-H5-Kaa">
                                 <rect key="frame" x="281" y="87" width="22" height="22"/>
                                 <state key="normal" image="addChannelButton"/>
+                                <connections>
+                                    <action selector="AddChannelPressed:" destination="e4p-ZC-eDg" eventType="touchUpInside" id="dhb-jD-Swu"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qhg-J5-hhY">
                                 <rect key="frame" x="120" y="593" width="46" height="33"/>

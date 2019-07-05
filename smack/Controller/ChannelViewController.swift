@@ -77,6 +77,12 @@ class ChannelViewController: UIViewController,UITableViewDelegate,UITableViewDat
         return MessageService.instance.channels.count
     }
     
+    @IBAction func AddChannelPressed(_ sender: Any) {
+         if AuthService.instance.isLoggedIn{
+            let addChannel = AddChannelViewController()
+            addChannel.modalPresentationStyle = .custom
+            present(addChannel, animated: true, completion: nil)
+        }
+    }
     
-
 }

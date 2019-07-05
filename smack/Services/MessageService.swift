@@ -46,4 +46,23 @@ class MessageService{
         }
     }
     
+    func addChannel(name:String, description:String,completion: @escaping CompletionHandler)
+    {
+        let body: [String: Any] = [
+            "name": name,
+            "description":description
+        ]
+        
+        Alamofire.request(URL_GET_CHANNELS, method: .post, parameters: body, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
+            if response.result.error == nil{
+                completion(true)
+            }
+            
+            else{
+                completion(false)
+                debugPrint(response.result.error as Any)
+            }
+        }
+    }
+    
 }
