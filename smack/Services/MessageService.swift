@@ -18,7 +18,12 @@ class MessageService{
     
     func findAllChannel(completion: @escaping CompletionHandler)
     {
-        Alamofire.request(URL_GET_CHANNELS, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
+        let header = [
+            "Authorization": "Bearer \(AuthService.instance.authToken)",
+            "Content-Type" : "application/json; charset=utf-8"
+        ]
+        
+        Alamofire.request(URL_GET_CHANNELS, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: header).responseJSON { (response) in
             if response.result.error == nil{
                 guard let data = response.data else {return}
                 do{
@@ -32,7 +37,6 @@ class MessageService{
                         }
                     }
                 }
-            
                 catch{
                     completion(false)
                     return
@@ -53,11 +57,15 @@ class MessageService{
             "description":description
         ]
         
-        Alamofire.request(URL_GET_CHANNELS, method: .post, parameters: body, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
+        let header = [
+            "Authorization": "Bearer \(AuthService.instance.authToken)",
+            "Content-Type" : "application/json; charset=utf-8"
+        ]
+        
+        Alamofire.request(URL_ADD_CHANNEL, method: .post, parameters: body, encoding: JSONEncoding.default, headers: header).responseJSON { (response) in
             if response.result.error == nil{
                 completion(true)
             }
-            
             else{
                 completion(false)
                 debugPrint(response.result.error as Any)

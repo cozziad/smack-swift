@@ -10,8 +10,9 @@ import UIKit
 
 class AddChannelViewController: UIViewController {
     //Outlets
+    
     @IBOutlet weak var channelNameTxt: UITextField!
-    @IBOutlet weak var channelDescText: UITextField!
+    @IBOutlet weak var channelDescTxt: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,27 +35,25 @@ class AddChannelViewController: UIViewController {
     
     @IBAction func addChannelPressed(_ sender: Any) {
         guard let name = channelNameTxt.text, channelNameTxt.text != "" else {return}
-        guard let description = channelDescText.text, channelDescText.text != "" else {return}
+        guard let description = channelDescTxt.text, channelDescTxt.text != "" else {return}
         
         if name != "" && description != ""{
-            MessageService.instance.addChannel(name: name, description: description) { (success) in
-                if success{
-                    print("update channel list notif")
-                }
+            //MessageService.instance.addChannel(name: name, description: description) { (success) in
+            SocketService.instance.addChannel(name: name, description: description) { (success) in
+            if success{
+                print("update channel list notif")
                 self.dismiss(animated: true, completion: nil)
+            }
+            else{
+                let alert = UIAlertController(title: "Add Channel Failed", message: "Please try again later", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                }
             }
         }
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+  
 
 }

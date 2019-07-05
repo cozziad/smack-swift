@@ -111,8 +111,12 @@ class AuthService {
             "avatarName" : avatarName,
             "avatarColor" : avatarColor
         ]
+        let header = [
+            "Authorization": "Bearer \(AuthService.instance.authToken)",
+            "Content-Type" : "application/json; charset=utf-8"
+        ]
         
-        Alamofire.request(URL_USER_ADD, method: .post, parameters: body, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
+        Alamofire.request(URL_USER_ADD, method: .post, parameters: body, encoding: JSONEncoding.default, headers: header).responseJSON { (response) in
             if response.result.error == nil{
                 guard let data = response.data else {return}
                 do{
@@ -146,7 +150,12 @@ class AuthService {
         let lowerCaseEmail = self.userEmail.lowercased()
         let url: String = "\(URL_FIND_BY_EMAIL)\(lowerCaseEmail)"
         
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
+        let header = [
+            "Authorization": "Bearer \(AuthService.instance.authToken)",
+            "Content-Type" : "application/json; charset=utf-8"
+        ]
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: header).responseJSON { (response) in
             if response.result.error == nil{
                 guard let data = response.data else {return}
                 do{
