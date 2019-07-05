@@ -44,7 +44,7 @@ class AuthService {
     }
     
     func registerUser (email:String, password:String, completion: @escaping CompletionHandler){
-        
+        UserDataService.instance.logoutUser()
         let lowerCaseEmail = email.lowercased()
         
         let body: [String: Any] = [
@@ -63,7 +63,7 @@ class AuthService {
     }
     
     func loginUser (email:String, password:String, completion: @escaping CompletionHandler){
-        
+        self.isLoggedIn = false
         let lowerCaseEmail = email.lowercased()
         
         let body: [String: Any] = [
@@ -78,22 +78,31 @@ class AuthService {
                     let json = try JSON(data: data)
                     self.userEmail = json["user"].stringValue
                     self.authToken = json["token"].stringValue
+                    if self.userEmail != "" {
+                        self.isLoggedIn = true
+                        completion(true)
+                    }
+                    else
+                    {
+                        completion(false)
+                    }
                 }
                 catch{
                     debugPrint("Error reading json login data")
+                    UserDataService.instance.logoutUser()
                     completion(false)
                     return
                 }
-                completion(true)
+                
             } else {
                 completion(false)
+                UserDataService.instance.logoutUser()
                 debugPrint(response.result.error as Any)
             }
         }
     }
     
     func createUser (avatarColor: String, avatarName: String, email:String, name:String,completion: @escaping CompletionHandler) {
-        self.isLoggedIn = false
         let lowerCaseEmail = email.lowercased()
         
         let body: [String: Any] = [
@@ -103,11 +112,7 @@ class AuthService {
             "avatarColor" : avatarColor
         ]
         
-        let header = [
-            "Authorization": "Bearer \(AuthService.instance.authToken)",
-            "Content-Type" : "application/json; charset=utf-8"
-        ]
-        Alamofire.request(URL_USER_ADD, method: .post, parameters: body, encoding: JSONEncoding.default, headers: header).responseJSON { (response) in
+        Alamofire.request(URL_USER_ADD, method: .post, parameters: body, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
             if response.result.error == nil{
                 guard let data = response.data else {return}
                 do{
@@ -120,20 +125,54 @@ class AuthService {
                     let name = json["name"].stringValue
                     
                     UserDataService.instance.setUserData (id: id, avatarColor: avatarColor, avatarName: avatarName, email: email, name: name)
-                    self.isLoggedIn = true
                 }
                 catch{
                     debugPrint("Error reading json user add data")
+                    UserDataService.instance.logoutUser()
                     completion(false)
                     return
                 }
                 completion(true)
             }else {
                 completion(false)
+                UserDataService.instance.logoutUser()
                 debugPrint(response.result.error as Any)
             }
         }
         
+    }
+    
+    func findUserByEmail (completion: @escaping CompletionHandler){
+        let lowerCaseEmail = self.userEmail.lowercased()
+        let url: String = "\(URL_FIND_BY_EMAIL)\(lowerCaseEmail)"
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
+            if response.result.error == nil{
+                guard let data = response.data else {return}
+                do{
+                    let json = try JSON(data: data)
+                    
+                    let id = json["_id"].stringValue
+                    let avatarColor = json["avatarColor"].stringValue
+                    let avatarName = json["avatarName"].stringValue
+                    let email = json["email"].stringValue
+                    let name = json["name"].stringValue
+                    
+                    UserDataService.instance.setUserData (id: id, avatarColor: avatarColor, avatarName: avatarName, email: email, name: name)
+                }
+                catch{
+                    UserDataService.instance.logoutUser()
+                    completion(false)
+                    return
+                }
+                completion(true)
+            }
+            else {
+                UserDataService.instance.logoutUser()
+                debugPrint(response.result.error as Any)
+                completion(false)
+            }
+        }
     }
     
 }
