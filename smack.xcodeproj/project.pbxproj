@@ -15,6 +15,7 @@
 		75132C9622CED0CD00BCC606 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75132C9422CED0CD00BCC606 /* ProfileViewController.xib */; };
 		75132C9922CF832E00BCC606 /* MessageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75132C9822CF832E00BCC606 /* MessageService.swift */; };
 		75132C9B22CF836800BCC606 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75132C9A22CF836800BCC606 /* Channel.swift */; };
+		75132C9D22CF890000BCC606 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75132C9C22CF890000BCC606 /* TableViewCell.swift */; };
 		7519325222CBFEFC00FFF7DD /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7519325122CBFEFC00FFF7DD /* ChatViewController.swift */; };
 		7519325422CBFF0900FFF7DD /* ChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7519325322CBFF0900FFF7DD /* ChannelViewController.swift */; };
 		7519325B22CC03C700FFF7DD /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7519325922CC03C600FFF7DD /* SWRevealViewController.m */; };
@@ -41,6 +42,7 @@
 		75132C9422CED0CD00BCC606 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		75132C9822CF832E00BCC606 /* MessageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageService.swift; sourceTree = "<group>"; };
 		75132C9A22CF836800BCC606 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		75132C9C22CF890000BCC606 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		7519325122CBFEFC00FFF7DD /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		7519325322CBFF0900FFF7DD /* ChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelViewController.swift; sourceTree = "<group>"; };
 		7519325822CC03C400FFF7DD /* smack-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "smack-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				7519326822CD8C0500FFF7DD /* RoundedButton.swift */,
 				75132C8F22CE6B2600BCC606 /* AvatarCell.swift */,
 				75132C9122CE7F4F00BCC606 /* CircleImage.swift */,
+				75132C9C22CF890000BCC606 /* TableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				7519326222CC253400FFF7DD /* LoginViewController.swift in Sources */,
 				7519326922CD8C0600FFF7DD /* RoundedButton.swift in Sources */,
 				755B0BCE22CBEF510032D803 /* AppDelegate.swift in Sources */,
+				75132C9D22CF890000BCC606 /* TableViewCell.swift in Sources */,
 				75132C9222CE7F4F00BCC606 /* CircleImage.swift in Sources */,
 				75132C9B22CF836800BCC606 /* Channel.swift in Sources */,
 				75132C8C22CE5F1600BCC606 /* UserDataService.swift in Sources */,
