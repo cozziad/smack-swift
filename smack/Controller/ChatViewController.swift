@@ -13,6 +13,7 @@ class ChatViewController: UIViewController {
     //Outlets
     
     @IBOutlet weak var menuBtn: UIButton!
+    @IBOutlet weak var channelNameLbl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,21 +22,37 @@ class ChatViewController: UIViewController {
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
         
+         NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.userDataDidChange(_:)), name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.channelSelected(_:)), name: NOTIF_CHANNELS_SELECTED, object: nil)
+        
         if AuthService.instance.isLoggedIn{
             AuthService.instance.findUserByEmail() { (success) in
                 NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
             }
         }
-        
-        MessageService.instance.findAllChannel { (success) in
+    }
+    
+    @objc func userDataDidChange(_ notif: Notification){
+       if AuthService.instance.isLoggedIn{
+            MessageService.instance.findAllChannel { (success) in
             if success
             {
                 print("much success")
             }
             else{print("failed message")}
+            }
         }
     }
     
+    @objc func channelSelected(_ NOTIF: Notification)
+    {
+        updateWithChannel()
+    }
 
+    func updateWithChannel(){
+        let channelName = MessageService.instance.selectedChannel?.channelTitle ?? ""
+        channelNameLbl.text = "#\(channelName)"
+    }
 
 }
