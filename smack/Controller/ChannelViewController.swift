@@ -10,7 +10,6 @@ import UIKit
 
 class ChannelViewController: UIViewController {
 
-    
     //Outlets
     @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var userImg: CircleImage!
@@ -23,7 +22,15 @@ class ChannelViewController: UIViewController {
     }
     
     @IBAction func loginBtnPressed(_ sender: Any) {
-    performSegue (withIdentifier: TO_LOGIN, sender: nil)
+        if AuthService.instance.isLoggedIn{
+            let profile = ProfileViewController()
+            profile.modalPresentationStyle = .custom
+            present(profile, animated: true, completion: nil)
+        }
+        else {
+            performSegue (withIdentifier: TO_LOGIN, sender: nil)
+        }
+    
     }
     
     @objc func userDataDidChange(_ notif: Notification){
