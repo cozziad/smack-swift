@@ -94,6 +94,9 @@ class ChannelViewController: UIViewController,UITableViewDelegate,UITableViewDat
             addChannel.modalPresentationStyle = .custom
             present(addChannel, animated: true, completion: nil)
         }
+         else{
+            self.present(CommonFunctions.instance.makeAlert(title: "Not logged in", message: "Please log in to add a channel", action: "OK"), animated: true, completion: nil)
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

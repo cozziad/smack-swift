@@ -31,6 +31,7 @@
 		75536EFB22D2985A00A39273 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75536EFA22D2985A00A39273 /* Message.swift */; };
 		75536EFD22D29E6700A39273 /* CommonFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75536EFC22D29E6700A39273 /* CommonFunctions.swift */; };
 		75536EFF22D2A82500A39273 /* KeyboardBoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75536EFE22D2A82500A39273 /* KeyboardBoundView.swift */; };
+		75536F0122D2AC6300A39273 /* MessageCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75536F0022D2AC6300A39273 /* MessageCellTableViewCell.swift */; };
 		755B0BCE22CBEF510032D803 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755B0BCD22CBEF510032D803 /* AppDelegate.swift */; };
 		755B0BD322CBEF510032D803 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 755B0BD122CBEF510032D803 /* Main.storyboard */; };
 		755B0BD522CBEF570032D803 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 755B0BD422CBEF570032D803 /* Assets.xcassets */; };
@@ -66,6 +67,7 @@
 		75536EFA22D2985A00A39273 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		75536EFC22D29E6700A39273 /* CommonFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonFunctions.swift; sourceTree = "<group>"; };
 		75536EFE22D2A82500A39273 /* KeyboardBoundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardBoundView.swift; sourceTree = "<group>"; };
+		75536F0022D2AC6300A39273 /* MessageCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellTableViewCell.swift; sourceTree = "<group>"; };
 		755B0BCA22CBEF510032D803 /* smack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = smack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		755B0BCD22CBEF510032D803 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		755B0BD222CBEF510032D803 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				75132C9122CE7F4F00BCC606 /* CircleImage.swift */,
 				75132C9C22CF890000BCC606 /* TableViewCell.swift */,
 				75536EFE22D2A82500A39273 /* KeyboardBoundView.swift */,
+				75536F0022D2AC6300A39273 /* MessageCellTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				75132CA322CFAB2900BCC606 /* SocketService.swift in Sources */,
+				75536F0122D2AC6300A39273 /* MessageCellTableViewCell.swift in Sources */,
 				7519326222CC253400FFF7DD /* LoginViewController.swift in Sources */,
 				75536EFF22D2A82500A39273 /* KeyboardBoundView.swift in Sources */,
 				7519326922CD8C0600FFF7DD /* RoundedButton.swift in Sources */,

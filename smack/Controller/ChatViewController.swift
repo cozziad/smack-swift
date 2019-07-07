@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChatViewController: UIViewController {
+class ChatViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
 
     //Outlets
     
@@ -16,6 +16,7 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var menuBtn: UIButton!
     @IBOutlet weak var channelNameLbl: UILabel!
     @IBOutlet weak var chatTxt: UITextField!
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,12 +24,19 @@ class ChatViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         self.view.addGestureRecognizer(tap)
         
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.estimatedRowHeight = 80
+        tableView.rowHeight = UITableView.automaticDimension
+        
         menuBtn.addTarget(self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
         
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
         
          NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.userDataDidChange(_:)), name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.messagesLoaded(_:)), name: NOTIF_MESSAGES_LOADED, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.channelSelected(_:)), name: NOTIF_CHANNELS_SELECTED, object: nil)
         
@@ -55,7 +63,15 @@ class ChatViewController: UIViewController {
     
     @objc func channelSelected(_ NOTIF: Notification)
     {
+        if !AuthService.instance.isLoggedIn {return}
         updateWithChannel()
+        getMessagesForChannel()
+    }
+    
+    @objc func messagesLoaded(_ NOTIF: Notification)
+    {
+        if !AuthService.instance.isLoggedIn {return}
+        getMessagesForChannel()
     }
     
     @objc func handleTap()
@@ -70,7 +86,7 @@ class ChatViewController: UIViewController {
     
     @IBAction func sendBtnPressed(_ sender: Any) {
         if !AuthService.instance.isLoggedIn {
-            self.present(CommonFunctions.instance.makeAlert(title: "Not logged in", message: "Please log in", action: "OK"), animated: true, completion: nil)
+            self.present(CommonFunctions.instance.makeAlert(title: "Not logged in", message: "Please log in to send a message", action: "OK"), animated: true, completion: nil)
             return
         }
         
@@ -95,14 +111,31 @@ class ChatViewController: UIViewController {
     }
     
     
-    func getMessagesForChannel (){
+    func getMessagesForChannel(){
         guard let channelId = MessageService.instance.selectedChannel?.id else {return}
         MessageService.instance.findAllMessageForChannel(channelId: channelId) { (success) in
             if (success)
             {
-                print ("got messages")
+                self.tableView.reloadData()
             }
         }
     }
 
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as? MessageCellTableViewCell {
+            let message = MessageService.instance.messages[indexPath.row]
+            cell.configureCell(message: message)
+            return cell
+        }
+        else {return UITableViewCell()}
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return MessageService.instance.messages.count
+    }
+    
 }
