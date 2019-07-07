@@ -47,9 +47,8 @@ class LoginViewController: UIViewController {
                 }
             }
             else{
-                let alert = UIAlertController(title: "Login Failed", message: "Please confirm your credentials", preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+               
+            self.present(CommonFunctions.instance.makeAlert(title: "Invalid Login", message: "Please confirm your login credentials", action: "OK"), animated: true, completion: nil)
             }
         }
         spinner.stopAnimating()

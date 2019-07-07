@@ -45,9 +45,7 @@ class AddChannelViewController: UIViewController {
                 self.dismiss(animated: true, completion: nil)
             }
             else{
-                let alert = UIAlertController(title: "Add Channel Failed", message: "Please try again later", preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                self.present(CommonFunctions.instance.makeAlert(title: "Add Channel Failed", message: "Please try again later", action: "OK"), animated: true, completion: nil)
                 }
             }
         }

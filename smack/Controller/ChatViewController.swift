@@ -36,13 +36,15 @@ class ChatViewController: UIViewController {
     @objc func userDataDidChange(_ notif: Notification){
        if AuthService.instance.isLoggedIn{
             MessageService.instance.findAllChannel { (success) in
-            if success
-            {
-                print("much success")
-            }
-            else{print("failed message")}
+            if success{
+                if MessageService.instance.channels.count > 0{
+                    MessageService.instance.selectedChannel = MessageService.instance.channels[0]
+                    self.updateWithChannel()
+                }
             }
         }
+       }
+       else {channelNameLbl.text = "Smack"}
     }
     
     @objc func channelSelected(_ NOTIF: Notification)
@@ -53,6 +55,16 @@ class ChatViewController: UIViewController {
     func updateWithChannel(){
         let channelName = MessageService.instance.selectedChannel?.channelTitle ?? ""
         channelNameLbl.text = "#\(channelName)"
+    }
+    
+    func getMessagesForChannel (){
+        guard let channelId = MessageService.instance.selectedChannel?.id else {return}
+        MessageService.instance.findAllMessageForChannel(channelId: channelId) { (success) in
+            if (success)
+            {
+                print ("got messages")
+            }
+        }
     }
 
 }
