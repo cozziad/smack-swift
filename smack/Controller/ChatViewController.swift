@@ -17,13 +17,14 @@ class ChatViewController: UIViewController,UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var channelNameLbl: UILabel!
     @IBOutlet weak var chatTxt: UITextField!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var sendBtn: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.bindToKeyboard()
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        self.view.addGestureRecognizer(tap)
         
+        sendBtn.isHidden = true
+    
         tableView.delegate = self
         tableView.dataSource = self
         tableView.estimatedRowHeight = 80
@@ -31,10 +32,13 @@ class ChatViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         
         menuBtn.addTarget(self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
         
+        view.bindToKeyboard()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        self.view.addGestureRecognizer(tap)
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
         
-         NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.userDataDidChange(_:)), name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.userDataDidChange(_:)), name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.messagesLoaded(_:)), name: NOTIF_MESSAGES_LOADED, object: nil)
         
@@ -43,6 +47,13 @@ class ChatViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         if AuthService.instance.isLoggedIn{
             AuthService.instance.findUserByEmail() { (success) in
                 NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
+            }
+            SocketService.instance.getMessage { (success) in
+                if success {
+                    self.tableView.reloadData()
+                    let endIndex = IndexPath(row: MessageService.instance.messages.count - 1, section: 0)
+                    self.tableView.scrollToRow(at: endIndex, at: .bottom, animated: true)
+                }
             }
         }
     }
@@ -136,6 +147,10 @@ class ChatViewController: UIViewController,UITableViewDelegate, UITableViewDataS
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return MessageService.instance.messages.count
+    }
+    @IBAction func chatTxtEditing(_ sender: Any) {
+        if chatTxt.text == "" {sendBtn.isHidden = true}
+        else {sendBtn.isHidden = false}
     }
     
 }

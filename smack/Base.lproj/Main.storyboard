@@ -72,6 +72,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="chatTxtEditing:" destination="vUQ-WD-w5C" eventType="editingChanged" id="VGo-Fk-a2b"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8LP-gE-0SY">
                                 <rect key="frame" x="345" y="632" width="30" height="30"/>
@@ -167,6 +170,7 @@
                         <outlet property="channelNameLbl" destination="BVO-7H-GZ7" id="92R-qP-xOy"/>
                         <outlet property="chatTxt" destination="lyq-bV-gGl" id="Gzd-qb-5SG"/>
                         <outlet property="menuBtn" destination="kBl-PF-7gX" id="xCW-i9-HNZ"/>
+                        <outlet property="sendBtn" destination="8LP-gE-0SY" id="Feu-vB-jRr"/>
                         <outlet property="tableView" destination="j0A-pI-rwu" id="5Q4-yN-sqh"/>
                     </connections>
                 </viewController>
