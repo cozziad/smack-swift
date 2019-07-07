@@ -12,11 +12,17 @@ class ChatViewController: UIViewController {
 
     //Outlets
     
+    
     @IBOutlet weak var menuBtn: UIButton!
     @IBOutlet weak var channelNameLbl: UILabel!
+    @IBOutlet weak var chatTxt: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.bindToKeyboard()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        self.view.addGestureRecognizer(tap)
+        
         menuBtn.addTarget(self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
         
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
@@ -51,11 +57,43 @@ class ChatViewController: UIViewController {
     {
         updateWithChannel()
     }
+    
+    @objc func handleTap()
+    {
+        view.endEditing(true)
+    }
 
     func updateWithChannel(){
         let channelName = MessageService.instance.selectedChannel?.channelTitle ?? ""
         channelNameLbl.text = "#\(channelName)"
     }
+    
+    @IBAction func sendBtnPressed(_ sender: Any) {
+        if !AuthService.instance.isLoggedIn {
+            self.present(CommonFunctions.instance.makeAlert(title: "Not logged in", message: "Please log in", action: "OK"), animated: true, completion: nil)
+            return
+        }
+        
+        guard let messageBody = chatTxt.text else {return}
+        if messageBody != ""{
+            SocketService.instance.sendMessage(messageBody: messageBody) { (success) in
+                if (success)
+                {
+                    self.chatTxt.text = ""
+                    self.chatTxt.resignFirstResponder()
+                }
+                else
+                {
+                    self.present(CommonFunctions.instance.makeAlert(title: "Message not sent", message: "Please try again", action: "OK"), animated: true, completion: nil)
+                }
+            }
+        }
+        else
+        {
+            self.present(CommonFunctions.instance.makeAlert(title: "Blank Message", message: "Please enter a message to send", action: "OK"), animated: true, completion: nil)
+        }
+    }
+    
     
     func getMessagesForChannel (){
         guard let channelId = MessageService.instance.selectedChannel?.id else {return}
