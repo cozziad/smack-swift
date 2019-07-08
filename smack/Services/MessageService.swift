@@ -21,6 +21,7 @@ class MessageService{
     
     func findAllChannel(completion: @escaping CompletionHandler)
     {
+        if !AuthService.instance.isLoggedIn {return}
         let header = [
             "Authorization": "Bearer \(AuthService.instance.authToken)",
             "Content-Type" : "application/json; charset=utf-8"
@@ -49,13 +50,13 @@ class MessageService{
             }
             else{
                 completion(false)
-                debugPrint(response.result.error as Any)
             }
         }
     }
     
     func addChannel(name:String, description:String,completion: @escaping CompletionHandler)
     {
+        if !AuthService.instance.isLoggedIn {return}
         let body: [String: Any] = [
             "name": name,
             "description":description
@@ -72,7 +73,6 @@ class MessageService{
             }
             else{
                 completion(false)
-                debugPrint(response.result.error as Any)
             }
         }
     }
@@ -88,7 +88,7 @@ class MessageService{
     }
     
     func findAllMessageForChannel (channelId: String, completion: @escaping CompletionHandler){
-        
+        if !AuthService.instance.isLoggedIn {return}
         let header = [
             "Authorization": "Bearer \(AuthService.instance.authToken)",
             "Content-Type" : "application/json; charset=utf-8"

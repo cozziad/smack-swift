@@ -27,17 +27,14 @@ class ChannelViewController: UIViewController,UITableViewDelegate,UITableViewDat
         
         NotificationCenter.default.addObserver(self, selector: #selector(ChannelViewController.channelsLoaded(_:)), name: NOTIF_CHANNELS_LOADED, object: nil)
         
-        print("called VDL")
-        // DO THIS ONLY IF LOGGED IN
-        if AuthService.instance.isLoggedIn
-        {
+        //May need to get rid of the logged in list here
+        if AuthService.instance.isLoggedIn{
             SocketService.instance.getChannel{(success) in
                 if success{self.tableView.reloadData()}
             }
         
             SocketService.instance.getMessage { (newMessage) in
-                if newMessage.channelId != MessageService.instance.selectedChannel?.id
-                {
+                if newMessage.channelId != MessageService.instance.selectedChannel?.id{
                     MessageService.instance.unreadChannels.append(newMessage.channelId)
                     self.tableView.reloadData()
                 }
@@ -51,10 +48,7 @@ class ChannelViewController: UIViewController,UITableViewDelegate,UITableViewDat
             profile.modalPresentationStyle = .custom
             present(profile, animated: true, completion: nil)
         }
-        else {
-            performSegue (withIdentifier: TO_LOGIN, sender: nil)
-        }
-    
+        else {performSegue (withIdentifier: TO_LOGIN, sender: nil)}
     }
     
     override func viewDidAppear(_ animated: Bool) {setUpUserInfo()}
@@ -63,8 +57,7 @@ class ChannelViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     @objc func channelsLoaded(_ notif: Notification){self.tableView.reloadData()}
     
-    func setUpUserInfo()
-    {
+    func setUpUserInfo(){
         if AuthService.instance.isLoggedIn{
             loginBtn.setTitle(UserDataService.instance.name, for: .normal)
             userImg.image = UIImage(named: UserDataService.instance.avatarName)

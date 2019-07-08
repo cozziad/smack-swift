@@ -15,32 +15,27 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var useremail: UILabel!
     @IBOutlet weak var bgView: UIView!
     
-    override func viewDidLoad() {
+    override func viewDidLoad(){
         super.viewDidLoad()
-        setUpView()
-        // Do any additional setup after loading the view.
-    }
+        setUpView()}
     
-    func setUpView() {
-        if AuthService.instance.isLoggedIn{
-            username.text = UserDataService.instance.name
-            useremail.text = UserDataService.instance.email
-            profileImg.image = UIImage(named: UserDataService.instance.avatarName)
-            profileImg.backgroundColor = UserDataService.instance.returnUIColor(components: UserDataService.instance.avatarColor)
-        }
+    func setUpView(){
+        if !AuthService.instance.isLoggedIn {return}
+            
+        username.text = UserDataService.instance.name
+        useremail.text = UserDataService.instance.email
+        profileImg.image = UIImage(named: UserDataService.instance.avatarName)
+        profileImg.backgroundColor = UserDataService.instance.returnUIColor(components: UserDataService.instance.avatarColor)
+        
         let closeTouch = UITapGestureRecognizer(target: self, action: #selector(closeTap(_:)))
         view.addGestureRecognizer(closeTouch)
     }
     
-    @objc func closeTap(_ recoginzer: UITapGestureRecognizer){
-        dismiss(animated: true, completion: nil)
-    }
+    @objc func closeTap(_ recoginzer: UITapGestureRecognizer){dismiss(animated: true, completion: nil)}
     
-    @IBAction func closeModelPressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
+    @IBAction func closeModelPressed(_ sender: Any){dismiss(animated: true, completion: nil)}
     
-    @IBAction func logoutPressed(_ sender: Any) {
+    @IBAction func logoutPressed(_ sender: Any){
         UserDataService.instance.logoutUser()
         NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
         dismiss(animated: true, completion: nil)

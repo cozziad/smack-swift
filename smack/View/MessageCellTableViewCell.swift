@@ -17,18 +17,14 @@ class MessageCellTableViewCell: UITableViewCell {
     @IBOutlet weak var msgDate: UILabel!
     @IBOutlet weak var messageBody: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
+    override func awakeFromNib() {super.awakeFromNib()}
     
-    func configureCell(message:Message)
-    {
+    func configureCell(message:Message){
         messageBody.text = message.message
         userName.text = message.userName
         userImg.image = UIImage(named:message.userAvatar)
         userImg.backgroundColor = UserDataService.instance.returnUIColor(components: message.userAvatarColor)
-        
-    }
+        }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

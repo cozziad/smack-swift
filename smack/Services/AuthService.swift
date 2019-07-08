@@ -61,7 +61,6 @@ class AuthService {
                 completion(true)
             } else {
                 completion(false)
-                debugPrint(response.result.error as Any)
             }
         }
     }
@@ -86,13 +85,12 @@ class AuthService {
                         self.isLoggedIn = true
                         completion(true)
                     }
-                    else
-                    {
+                    else{
+                        UserDataService.instance.logoutUser()
                         completion(false)
                     }
                 }
                 catch{
-                    debugPrint("Error reading json login data")
                     UserDataService.instance.logoutUser()
                     completion(false)
                     return
@@ -101,7 +99,6 @@ class AuthService {
             } else {
                 completion(false)
                 UserDataService.instance.logoutUser()
-                debugPrint(response.result.error as Any)
             }
         }
     }
@@ -135,7 +132,6 @@ class AuthService {
                     UserDataService.instance.setUserData (id: id, avatarColor: avatarColor, avatarName: avatarName, email: email, name: name)
                 }
                 catch{
-                    debugPrint("Error reading json user add data")
                     UserDataService.instance.logoutUser()
                     completion(false)
                     return
@@ -182,7 +178,6 @@ class AuthService {
             }
             else {
                 UserDataService.instance.logoutUser()
-                debugPrint(response.result.error as Any)
                 completion(false)
             }
         }

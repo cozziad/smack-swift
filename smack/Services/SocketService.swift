@@ -21,16 +21,15 @@ class SocketService: NSObject {
     func establishConnection(){
         let socket = manager.defaultSocket
         socket.connect()
-        print("open socket")
     }
     
     func closeConnection(){
         let socket = manager.defaultSocket
         socket.disconnect()
-        print("close socket")
     }
     
     func addChannel(name:String, description:String, completion: @escaping CompletionHandler){
+        if !AuthService.instance.isLoggedIn {return}
         let socket = manager.defaultSocket
         socket.emit("newChannel", name,description)
         completion(true)
@@ -38,6 +37,7 @@ class SocketService: NSObject {
     
     func getChannel(completion: @escaping CompletionHandler)
     {
+        if !AuthService.instance.isLoggedIn {return}
         let socket = manager.defaultSocket
         socket.on("channelCreated") { (dataArray, ack) in
             guard let channelName = dataArray[0] as? String else {return}
@@ -52,7 +52,6 @@ class SocketService: NSObject {
     func getMessage(completion: @escaping (_ newMessage: Message) -> Void)
     {
         if !AuthService.instance.isLoggedIn {return}
-        
         let socket = manager.defaultSocket
         socket.on("messageCreated") { (dataArray, ack) in
         guard let messageBody = dataArray[0] as? String else {return}
@@ -70,6 +69,7 @@ class SocketService: NSObject {
     
     func sendMessage(messageBody:String,completion: @escaping CompletionHandler)
     {
+        if !AuthService.instance.isLoggedIn {return}
         let socket = manager.defaultSocket
         let userID = UserDataService.instance.id 
         guard let channelId = MessageService.instance.selectedChannel?.id else {return}

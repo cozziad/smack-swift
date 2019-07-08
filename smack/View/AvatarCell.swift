@@ -23,13 +23,11 @@ class AvatarCell: UICollectionViewCell {
     }
     
     func configureCell (index: Int, type:AvatarType){
-        if type == .dark
-        {
+        if type == .dark{
             avatarImg.image = UIImage(named: "dark\(index)")
             self.layer.backgroundColor = UIColor.lightGray.cgColor
         }
-        else
-        {
+        else{
             avatarImg.image = UIImage(named: "light\(index)")
             self.layer.backgroundColor = UIColor.darkGray.cgColor
         }
@@ -40,6 +38,5 @@ class AvatarCell: UICollectionViewCell {
         self.layer.cornerRadius = 10
         self.clipsToBounds = true
     }
-    
     
 }
