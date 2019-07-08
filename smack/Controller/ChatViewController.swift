@@ -18,7 +18,7 @@ class ChatViewController: UIViewController,UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var chatTxt: UITextField!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var sendBtn: UIButton!
-    
+    @IBOutlet weak var isTypingLbl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +56,28 @@ class ChatViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                 }
             }
         }
+        
+        SocketService.instance.getTypingUsers { (typingUsers) in
+            guard let channelId = MessageService.instance.selectedChannel?.id else {return}
+            var names = ""
+            var numTypers = 0
+            self.isTypingLbl.text = ""
+            
+            for(typingUser,channel) in typingUsers{
+                if typingUser != UserDataService.instance.name && channelId == channel {
+                    if names == "" {names = typingUser}
+                    else{names = "\(names), \(typingUser)"}
+                    numTypers += 1
+                    }
+                }
+            if numTypers > 0 && AuthService.instance.isLoggedIn
+            {
+                if numTypers == 1 {self.isTypingLbl.text = "\(names) is typing"}
+                else {self.isTypingLbl.text = "\(names) are typing"}
+            }
+            
+        }
+        
     }
     
     @objc func userDataDidChange(_ notif: Notification){
@@ -108,6 +130,12 @@ class ChatViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                 {
                     self.chatTxt.text = ""
                     self.chatTxt.resignFirstResponder()
+                    guard let channelId = MessageService.instance.selectedChannel?.id else {return}
+                    SocketService.instance.stopTyping(channelId: channelId) { (success) in
+                        if success {
+                            // do nothing
+                        }
+                    }
                 }
                 else
                 {
@@ -149,8 +177,24 @@ class ChatViewController: UIViewController,UITableViewDelegate, UITableViewDataS
             return MessageService.instance.messages.count
     }
     @IBAction func chatTxtEditing(_ sender: Any) {
-        if chatTxt.text == "" {sendBtn.isHidden = true}
-        else {sendBtn.isHidden = false}
+        if !AuthService.instance.isLoggedIn {return}
+        guard let channelId = MessageService.instance.selectedChannel?.id else {return}
+        if chatTxt.text == "" {
+            sendBtn.isHidden = true
+            SocketService.instance.stopTyping(channelId: channelId) { (success) in
+                if success {
+                    // do nothing
+                }
+            }
+        }
+        else {
+        sendBtn.isHidden = false
+        SocketService.instance.startTyping(channelId: channelId) { (success) in
+            if success {
+                // do nothing
+            }
+            }
+        }
     }
     
 }

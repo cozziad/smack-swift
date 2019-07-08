@@ -85,4 +85,29 @@ class SocketService: NSObject {
         completion(true)
     }
     
+    func getTypingUsers (_ completionHandler: @escaping (_ typingUsers: [String:String]) -> Void)
+    {
+        let socket = manager.defaultSocket
+        socket.on("userTypingUpdate") { (dataArray, ack) in
+            guard let typingUsers = dataArray[0] as? [String: String] else {return}
+            completionHandler(typingUsers)
+        }
+    }
+    
+    func startTyping (channelId:String,completion: @escaping CompletionHandler)
+    {
+        let socket = manager.defaultSocket
+        let userName = UserDataService.instance.name
+        
+        socket.emit("startType",userName,channelId)
+    }
+    
+    func stopTyping (channelId:String,completion: @escaping CompletionHandler)
+    {
+        let socket = manager.defaultSocket
+        let userName = UserDataService.instance.name
+        
+        socket.emit("stopType",userName,channelId)
+    }
+    
 }

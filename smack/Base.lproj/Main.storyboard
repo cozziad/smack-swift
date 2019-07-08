@@ -148,6 +148,12 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qWO-fq-PfI">
+                                <rect key="frame" x="8" y="597" width="0.0" height="26"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -156,11 +162,14 @@
                             <constraint firstItem="j0A-pI-rwu" firstAttribute="leading" secondItem="NSC-qS-Oo8" secondAttribute="leading" id="AQe-5e-88H"/>
                             <constraint firstItem="NSC-qS-Oo8" firstAttribute="trailing" secondItem="8LP-gE-0SY" secondAttribute="trailing" id="G8h-ZX-HAS"/>
                             <constraint firstItem="eF8-D3-a8O" firstAttribute="top" secondItem="NSC-qS-Oo8" secondAttribute="top" id="Och-Vo-Ya1"/>
+                            <constraint firstItem="qWO-fq-PfI" firstAttribute="leading" secondItem="NSC-qS-Oo8" secondAttribute="leading" constant="8" id="RXb-Be-6R5"/>
                             <constraint firstItem="j0A-pI-rwu" firstAttribute="trailing" secondItem="NSC-qS-Oo8" secondAttribute="trailing" id="TCL-zA-5od"/>
                             <constraint firstItem="8LP-gE-0SY" firstAttribute="centerY" secondItem="lyq-bV-gGl" secondAttribute="centerY" id="hhv-aB-PRG"/>
                             <constraint firstItem="lyq-bV-gGl" firstAttribute="trailing" secondItem="NSC-qS-Oo8" secondAttribute="trailing" id="sdy-jA-NYe"/>
                             <constraint firstItem="eF8-D3-a8O" firstAttribute="trailing" secondItem="NSC-qS-Oo8" secondAttribute="trailing" id="uNU-fq-3Z8"/>
                             <constraint firstItem="lyq-bV-gGl" firstAttribute="leading" secondItem="NSC-qS-Oo8" secondAttribute="leading" id="uOj-cg-f1i"/>
+                            <constraint firstItem="qWO-fq-PfI" firstAttribute="top" secondItem="j0A-pI-rwu" secondAttribute="bottom" id="v9U-ax-u79"/>
+                            <constraint firstItem="lyq-bV-gGl" firstAttribute="top" secondItem="qWO-fq-PfI" secondAttribute="bottom" constant="4" id="vMI-NR-zbK"/>
                             <constraint firstItem="eF8-D3-a8O" firstAttribute="leading" secondItem="NSC-qS-Oo8" secondAttribute="leading" id="vTu-yY-Oee"/>
                             <constraint firstItem="lyq-bV-gGl" firstAttribute="top" secondItem="j0A-pI-rwu" secondAttribute="bottom" constant="30" id="zTW-Ex-2iz"/>
                         </constraints>
@@ -169,6 +178,7 @@
                     <connections>
                         <outlet property="channelNameLbl" destination="BVO-7H-GZ7" id="92R-qP-xOy"/>
                         <outlet property="chatTxt" destination="lyq-bV-gGl" id="Gzd-qb-5SG"/>
+                        <outlet property="isTypingLbl" destination="qWO-fq-PfI" id="R7d-Cp-Vb8"/>
                         <outlet property="menuBtn" destination="kBl-PF-7gX" id="xCW-i9-HNZ"/>
                         <outlet property="sendBtn" destination="8LP-gE-0SY" id="Feu-vB-jRr"/>
                         <outlet property="tableView" destination="j0A-pI-rwu" id="5Q4-yN-sqh"/>
