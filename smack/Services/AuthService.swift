@@ -183,4 +183,40 @@ class AuthService {
         }
     }
     
+    func updateUser (name:String, email:String, completion: @escaping CompletionHandler){
+        if !AuthService.instance.isLoggedIn {return}
+        
+        let lowerCaseEmail = email.lowercased()
+        let url = "\(URL_UPDATE_USER)\(UserDataService.instance.id)"
+        
+        let body: [String: Any] = [
+            "name":name,
+            "email":lowerCaseEmail,
+            "avatarName": UserDataService.instance.avatarName,
+            "avatarColor": UserDataService.instance.avatarColor
+        ]
+        
+        let header = [
+            "Authorization": "Bearer \(AuthService.instance.authToken)",
+            "Content-Type" : "application/json; charset=utf-8"
+        ]
+        Alamofire.request(url, method: .put, parameters: body, encoding: JSONEncoding.default, headers: header).responseJSON { (response) in
+            if response.result.error == nil {
+                guard let data = response.data else {return}
+                do{
+                    let json = try JSON(data: data)
+                    
+                    UserDataService.instance.setUserData (id: UserDataService.instance.id, avatarColor: UserDataService.instance.avatarColor, avatarName: UserDataService.instance.avatarName, email: lowerCaseEmail, name: name)
+                }
+                catch{
+                    completion(false)
+                    return
+                }
+                completion(true)
+            } else {
+                completion(false)
+            }
+        }
+    }
+    
 }

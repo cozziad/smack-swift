@@ -27,6 +27,9 @@ class ChannelViewController: UIViewController,UITableViewDelegate,UITableViewDat
         
         NotificationCenter.default.addObserver(self, selector: #selector(ChannelViewController.channelsLoaded(_:)), name: NOTIF_CHANNELS_LOADED, object: nil)
         
+         NotificationCenter.default.addObserver(self, selector: #selector(ChannelViewController.userUpdatedProfile(_:)), name: NOTIF_USER_UPDATED_PROFILE, object: nil)
+        
+        
         //May need to get rid of the logged in list here
         if AuthService.instance.isLoggedIn{
             SocketService.instance.getChannel{(success) in
@@ -86,6 +89,11 @@ class ChannelViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return MessageService.instance.channels.count
+    }
+    
+    @objc func userUpdatedProfile(_ NOTIF: Notification){
+        if !AuthService.instance.isLoggedIn {return}
+        loginBtn.setTitle(UserDataService.instance.name, for: .normal)
     }
     
     @IBAction func AddChannelPressed(_ sender: Any) {

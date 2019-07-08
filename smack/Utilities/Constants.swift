@@ -20,6 +20,7 @@ let URL_FIND_BY_EMAIL = "\(BASE_URL)user/byEmail/"
 let URL_GET_CHANNELS = "\(BASE_URL)channel"
 let URL_ADD_CHANNEL = "\(BASE_URL)channel/add"
 let URL_GET_MESSAGES = "\(BASE_URL)message/byChannel/"
+let URL_UPDATE_USER = "\(BASE_URL)user/"
 
 //Segues
 let TO_LOGIN = "toLogin"
@@ -44,4 +45,5 @@ let SMACKPURPLEPLACERHOLDER = #colorLiteral(red: 0.2588235294, green: 0.32941176
 let NOTIF_USER_DATA_DID_CHANGE = Notification.Name("notifUserDataDidChange")
 let NOTIF_CHANNELS_LOADED = Notification.Name("channelsLoaded")
 let NOTIF_CHANNELS_SELECTED = Notification.Name("channelsSelected")
+let NOTIF_USER_UPDATED_PROFILE = Notification.Name("notifUserUpdatedProfile")
 

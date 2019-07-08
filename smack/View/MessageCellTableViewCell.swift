@@ -24,7 +24,8 @@ class MessageCellTableViewCell: UITableViewCell {
         userName.text = message.userName
         userImg.image = UIImage(named:message.userAvatar)
         userImg.backgroundColor = UserDataService.instance.returnUIColor(components: message.userAvatarColor)
-        }
+    
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

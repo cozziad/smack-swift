@@ -32,6 +32,7 @@ class MessageService{
                 guard let data = response.data else {return}
                 do{
                     if let json = try JSON(data: data).array {
+                        self.clearChannels()
                         for item in json{
                             let name = item["name"].stringValue
                             let channelDescription = item["description"].stringValue
@@ -87,7 +88,7 @@ class MessageService{
         messages.removeAll()
     }
     
-    func findAllMessageForChannel (channelId: String, completion: @escaping CompletionHandler){
+    func findAllMessagesForChannel (channelId: String, completion: @escaping CompletionHandler){
         if !AuthService.instance.isLoggedIn {return}
         let header = [
             "Authorization": "Bearer \(AuthService.instance.authToken)",

@@ -44,8 +44,9 @@ class ChatViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         
         if AuthService.instance.isLoggedIn{
             AuthService.instance.findUserByEmail() { (success) in
-                NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
+                if success{NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)}
             }
+            //self.getMessagesForChannel()
         }
         
         // Socket Listener for new messages
@@ -83,7 +84,7 @@ class ChatViewController: UIViewController,UITableViewDelegate, UITableViewDataS
     }
     
     @objc func userDataDidChange(_ notif: Notification){
-    if AuthService.instance.isLoggedIn{
+        if AuthService.instance.isLoggedIn{
         MessageService.instance.findAllChannel { (success) in
         if success{
             if MessageService.instance.channels.count > 0{
@@ -95,14 +96,13 @@ class ChatViewController: UIViewController,UITableViewDelegate, UITableViewDataS
        }
     else {
         channelNameLbl.text = "Smack"
-        tableView.reloadData()
         }
+    tableView.reloadData()
     }
     
     @objc func channelSelected(_ NOTIF: Notification){
         if !AuthService.instance.isLoggedIn {return}
         updateWithChannel()
-        getMessagesForChannel()
     }
     
     @objc func handleTap() {view.endEditing(true)}
@@ -110,6 +110,7 @@ class ChatViewController: UIViewController,UITableViewDelegate, UITableViewDataS
     func updateWithChannel(){
         let channelName = MessageService.instance.selectedChannel?.channelTitle ?? ""
         channelNameLbl.text = "#\(channelName)"
+        getMessagesForChannel()
     }
     
     @IBAction func sendBtnPressed(_ sender: Any) {
@@ -143,7 +144,7 @@ class ChatViewController: UIViewController,UITableViewDelegate, UITableViewDataS
     
     func getMessagesForChannel(){
         guard let channelId = MessageService.instance.selectedChannel?.id else {return}
-        MessageService.instance.findAllMessageForChannel(channelId: channelId) { (success) in
+        MessageService.instance.findAllMessagesForChannel(channelId: channelId) { (success) in
             if (success){
                 self.tableView.reloadData()
                 if MessageService.instance.messages.count > 0 {
