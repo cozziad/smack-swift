@@ -48,11 +48,15 @@ class ChatViewController: UIViewController,UITableViewDelegate, UITableViewDataS
             AuthService.instance.findUserByEmail() { (success) in
                 NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
             }
-            SocketService.instance.getMessage { (success) in
-                if success {
+            SocketService.instance.getMessage { (newMessage) in
+                if newMessage.channelId == MessageService.instance.selectedChannel?.id
+                {
+                    MessageService.instance.messages.append(newMessage)
                     self.tableView.reloadData()
-                    let endIndex = IndexPath(row: MessageService.instance.messages.count - 1, section: 0)
-                    self.tableView.scrollToRow(at: endIndex, at: .bottom, animated: true)
+                    if MessageService.instance.messages.count > 0 {
+                        let endIndex = IndexPath(row: MessageService.instance.messages.count - 1, section: 0)
+                        self.tableView.scrollToRow(at: endIndex, at: .bottom, animated: true)
+                    }
                 }
             }
         }

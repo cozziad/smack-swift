@@ -24,12 +24,25 @@ class ChannelViewController: UIViewController,UITableViewDelegate,UITableViewDat
         self.revealViewController()?.rearViewRevealWidth = self.view.frame.width-60
         
         NotificationCenter.default.addObserver(self, selector: #selector(ChannelViewController.userDataDidChange(_:)), name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(ChannelViewController.channelsLoaded(_:)), name: NOTIF_CHANNELS_LOADED, object: nil)
         
-        SocketService.instance.getChannel{(success) in
-            if success{self.tableView.reloadData()}
+        print("called VDL")
+        // DO THIS ONLY IF LOGGED IN
+        if AuthService.instance.isLoggedIn
+        {
+            SocketService.instance.getChannel{(success) in
+                if success{self.tableView.reloadData()}
+            }
+        
+            SocketService.instance.getMessage { (newMessage) in
+                if newMessage.channelId != MessageService.instance.selectedChannel?.id
+                {
+                    MessageService.instance.unreadChannels.append(newMessage.channelId)
+                    self.tableView.reloadData()
+                }
+            }
         }
-       
     }
     
     @IBAction func loginBtnPressed(_ sender: Any) {
@@ -44,17 +57,11 @@ class ChannelViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        setUpUserInfo()
-    }
+    override func viewDidAppear(_ animated: Bool) {setUpUserInfo()}
     
-    @objc func userDataDidChange(_ notif: Notification){
-        setUpUserInfo()
-    }
+    @objc func userDataDidChange(_ notif: Notification){setUpUserInfo()}
     
-    @objc func channelsLoaded(_ notif: Notification){
-        self.tableView.reloadData()
-    }
+    @objc func channelsLoaded(_ notif: Notification){self.tableView.reloadData()}
     
     func setUpUserInfo()
     {
@@ -102,6 +109,14 @@ class ChannelViewController: UIViewController,UITableViewDelegate,UITableViewDat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let channel = MessageService.instance.channels[indexPath.row]
         MessageService.instance.selectedChannel = channel
+        
+        if MessageService.instance.unreadChannels.count > 0{
+            MessageService.instance.unreadChannels = MessageService.instance.unreadChannels.filter{$0 != channel.id}
+        }
+        let index = IndexPath(row: indexPath.row, section: 0)
+        tableView.reloadRows(at: [index], with: .none)
+        tableView.selectRow(at: index, animated: false, scrollPosition: .none)
+        
         NotificationCenter.default.post(name: NOTIF_CHANNELS_SELECTED, object: nil)
         self.revealViewController().revealToggle(animated: true)
     }
