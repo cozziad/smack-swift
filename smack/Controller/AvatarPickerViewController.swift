@@ -18,27 +18,19 @@ UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     //Variables
     var avatarType = AvatarType.dark
     
-    override func viewDidLoad() {
+    override func viewDidLoad(){
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
-
-        // Do any additional setup after loading the view.
     }
     
-    @IBAction func segmentControlChanged(_ sender: Any) {
-        if segmentControl.selectedSegmentIndex == 0{
-            avatarType = .dark
-        }
-        else{
-            avatarType = .light
-        }
+    @IBAction func segmentControlChanged(_ sender: Any){
+        if segmentControl.selectedSegmentIndex == 0{avatarType = .dark}
+        else{avatarType = .light}
         collectionView.reloadData()
     }
     
-    @IBAction func backBtnPressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
+    @IBAction func backBtnPressed(_ sender: Any) {dismiss(animated: true, completion: nil)}
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 28
@@ -47,24 +39,16 @@ UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         var numberofColumns: CGFloat = 3
-        if UIScreen.main.bounds.width > 320 {
-            numberofColumns = 4
-        }
+        if UIScreen.main.bounds.width > 320 {numberofColumns = 4}
         let spaceBetweenCells: CGFloat = 10
         let padding: CGFloat = 40
         let cellDimension = ((collectionView.bounds.width - padding) - (numberofColumns-1)*spaceBetweenCells) / numberofColumns
-        //print(cellDimension,collectionView.bounds.width - padding,numberofColumns,spaceBetweenCells)
-        
         return CGSize(width: cellDimension, height: cellDimension)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if avatarType == .dark {
-            UserDataService.instance.setavatarName(avatarName: "dark\(indexPath.item)")
-        }
-        else{
-            UserDataService.instance.setavatarName(avatarName: "light\(indexPath.item)")
-        }
+        if avatarType == .dark {UserDataService.instance.setavatarName(avatarName: "dark\(indexPath.item)")}
+        else{UserDataService.instance.setavatarName(avatarName: "light\(indexPath.item)")}
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -76,7 +60,5 @@ UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
         return AvatarCell()
     }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
+    func numberOfSections(in collectionView: UICollectionView) -> Int {return 1}
 }

@@ -16,6 +16,9 @@
 		75132C9922CF832E00BCC606 /* MessageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75132C9822CF832E00BCC606 /* MessageService.swift */; };
 		75132C9B22CF836800BCC606 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75132C9A22CF836800BCC606 /* Channel.swift */; };
 		75132C9D22CF890000BCC606 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75132C9C22CF890000BCC606 /* TableViewCell.swift */; };
+		75132CA022CF99DF00BCC606 /* AddChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75132C9E22CF99DF00BCC606 /* AddChannelViewController.swift */; };
+		75132CA122CF99DF00BCC606 /* AddChannelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75132C9F22CF99DF00BCC606 /* AddChannelViewController.xib */; };
+		75132CA322CFAB2900BCC606 /* SocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75132CA222CFAB2900BCC606 /* SocketService.swift */; };
 		7519325222CBFEFC00FFF7DD /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7519325122CBFEFC00FFF7DD /* ChatViewController.swift */; };
 		7519325422CBFF0900FFF7DD /* ChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7519325322CBFF0900FFF7DD /* ChannelViewController.swift */; };
 		7519325B22CC03C700FFF7DD /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7519325922CC03C600FFF7DD /* SWRevealViewController.m */; };
@@ -25,6 +28,10 @@
 		7519326422CC27B200FFF7DD /* createAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7519326322CC27B200FFF7DD /* createAccountViewController.swift */; };
 		7519326722CD59F400FFF7DD /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7519326622CD59F400FFF7DD /* AuthService.swift */; };
 		7519326922CD8C0600FFF7DD /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7519326822CD8C0500FFF7DD /* RoundedButton.swift */; };
+		75536EFB22D2985A00A39273 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75536EFA22D2985A00A39273 /* Message.swift */; };
+		75536EFD22D29E6700A39273 /* CommonFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75536EFC22D29E6700A39273 /* CommonFunctions.swift */; };
+		75536EFF22D2A82500A39273 /* KeyboardBoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75536EFE22D2A82500A39273 /* KeyboardBoundView.swift */; };
+		75536F0122D2AC6300A39273 /* MessageCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75536F0022D2AC6300A39273 /* MessageCellTableViewCell.swift */; };
 		755B0BCE22CBEF510032D803 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755B0BCD22CBEF510032D803 /* AppDelegate.swift */; };
 		755B0BD322CBEF510032D803 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 755B0BD122CBEF510032D803 /* Main.storyboard */; };
 		755B0BD522CBEF570032D803 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 755B0BD422CBEF570032D803 /* Assets.xcassets */; };
@@ -43,6 +50,9 @@
 		75132C9822CF832E00BCC606 /* MessageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageService.swift; sourceTree = "<group>"; };
 		75132C9A22CF836800BCC606 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		75132C9C22CF890000BCC606 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		75132C9E22CF99DF00BCC606 /* AddChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChannelViewController.swift; sourceTree = "<group>"; };
+		75132C9F22CF99DF00BCC606 /* AddChannelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AddChannelViewController.xib; path = ../Controller/AddChannelViewController.xib; sourceTree = "<group>"; };
+		75132CA222CFAB2900BCC606 /* SocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketService.swift; sourceTree = "<group>"; };
 		7519325122CBFEFC00FFF7DD /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		7519325322CBFF0900FFF7DD /* ChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelViewController.swift; sourceTree = "<group>"; };
 		7519325822CC03C400FFF7DD /* smack-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "smack-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -54,6 +64,10 @@
 		7519326322CC27B200FFF7DD /* createAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createAccountViewController.swift; sourceTree = "<group>"; };
 		7519326622CD59F400FFF7DD /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		7519326822CD8C0500FFF7DD /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		75536EFA22D2985A00A39273 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		75536EFC22D29E6700A39273 /* CommonFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonFunctions.swift; sourceTree = "<group>"; };
+		75536EFE22D2A82500A39273 /* KeyboardBoundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardBoundView.swift; sourceTree = "<group>"; };
+		75536F0022D2AC6300A39273 /* MessageCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellTableViewCell.swift; sourceTree = "<group>"; };
 		755B0BCA22CBEF510032D803 /* smack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = smack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		755B0BCD22CBEF510032D803 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		755B0BD222CBEF510032D803 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -89,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				75132C9422CED0CD00BCC606 /* ProfileViewController.xib */,
+				75132C9F22CF99DF00BCC606 /* AddChannelViewController.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -111,6 +126,8 @@
 				75132C8F22CE6B2600BCC606 /* AvatarCell.swift */,
 				75132C9122CE7F4F00BCC606 /* CircleImage.swift */,
 				75132C9C22CF890000BCC606 /* TableViewCell.swift */,
+				75536EFE22D2A82500A39273 /* KeyboardBoundView.swift */,
+				75536F0022D2AC6300A39273 /* MessageCellTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -119,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				75132C9A22CF836800BCC606 /* Channel.swift */,
+				75536EFA22D2985A00A39273 /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -127,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				7519325F22CC1F2800FFF7DD /* Constants.swift */,
+				75536EFC22D29E6700A39273 /* CommonFunctions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -137,6 +156,7 @@
 				7519326622CD59F400FFF7DD /* AuthService.swift */,
 				75132C8B22CE5F1600BCC606 /* UserDataService.swift */,
 				75132C9822CF832E00BCC606 /* MessageService.swift */,
+				75132CA222CFAB2900BCC606 /* SocketService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -187,6 +207,7 @@
 				7519326322CC27B200FFF7DD /* createAccountViewController.swift */,
 				75132C8D22CE694D00BCC606 /* AvatarPickerViewController.swift */,
 				75132C9322CED0CD00BCC606 /* ProfileViewController.swift */,
+				75132C9E22CF99DF00BCC606 /* AddChannelViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -261,6 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				755B0BD822CBEF570032D803 /* LaunchScreen.storyboard in Resources */,
+				75132CA122CF99DF00BCC606 /* AddChannelViewController.xib in Resources */,
 				755B0BD522CBEF570032D803 /* Assets.xcassets in Resources */,
 				75132C9622CED0CD00BCC606 /* ProfileViewController.xib in Resources */,
 				755B0BD322CBEF510032D803 /* Main.storyboard in Resources */,
@@ -319,11 +341,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75132CA322CFAB2900BCC606 /* SocketService.swift in Sources */,
+				75536F0122D2AC6300A39273 /* MessageCellTableViewCell.swift in Sources */,
 				7519326222CC253400FFF7DD /* LoginViewController.swift in Sources */,
+				75536EFF22D2A82500A39273 /* KeyboardBoundView.swift in Sources */,
 				7519326922CD8C0600FFF7DD /* RoundedButton.swift in Sources */,
 				755B0BCE22CBEF510032D803 /* AppDelegate.swift in Sources */,
 				75132C9D22CF890000BCC606 /* TableViewCell.swift in Sources */,
 				75132C9222CE7F4F00BCC606 /* CircleImage.swift in Sources */,
+				75536EFB22D2985A00A39273 /* Message.swift in Sources */,
 				75132C9B22CF836800BCC606 /* Channel.swift in Sources */,
 				75132C8C22CE5F1600BCC606 /* UserDataService.swift in Sources */,
 				75132C9922CF832E00BCC606 /* MessageService.swift in Sources */,
@@ -332,10 +358,12 @@
 				75132C8E22CE694D00BCC606 /* AvatarPickerViewController.swift in Sources */,
 				7519325D22CC0FD200FFF7DD /* GradientView.swift in Sources */,
 				7519326422CC27B200FFF7DD /* createAccountViewController.swift in Sources */,
+				75132CA022CF99DF00BCC606 /* AddChannelViewController.swift in Sources */,
 				75132C9022CE6B2600BCC606 /* AvatarCell.swift in Sources */,
 				7519325422CBFF0900FFF7DD /* ChannelViewController.swift in Sources */,
 				75132C9522CED0CD00BCC606 /* ProfileViewController.swift in Sources */,
 				7519325B22CC03C700FFF7DD /* SWRevealViewController.m in Sources */,
+				75536EFD22D29E6700A39273 /* CommonFunctions.swift in Sources */,
 				7519326022CC1F2800FFF7DD /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

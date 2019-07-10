@@ -27,7 +27,9 @@ class AuthService {
     
     var authToken: String{
         get{
-            return defaults.value (forKey: TOKEN_KEY) as! String
+            if let aT = defaults.value (forKey: TOKEN_KEY) as? String{
+                return aT
+            } else {return ""}
         }
         set {
             defaults.set(newValue,forKey: TOKEN_KEY)
@@ -36,7 +38,9 @@ class AuthService {
     
     var userEmail: String{
         get{
-            return defaults.value (forKey: USER_EMAIL) as! String
+            if let uE = defaults.value (forKey: USER_EMAIL) as? String{
+                return uE
+            } else {return ""}
         }
         set {
             defaults.set(newValue,forKey: USER_EMAIL)
@@ -57,7 +61,6 @@ class AuthService {
                 completion(true)
             } else {
                 completion(false)
-                debugPrint(response.result.error as Any)
             }
         }
     }
@@ -82,13 +85,12 @@ class AuthService {
                         self.isLoggedIn = true
                         completion(true)
                     }
-                    else
-                    {
+                    else{
+                        UserDataService.instance.logoutUser()
                         completion(false)
                     }
                 }
                 catch{
-                    debugPrint("Error reading json login data")
                     UserDataService.instance.logoutUser()
                     completion(false)
                     return
@@ -97,7 +99,6 @@ class AuthService {
             } else {
                 completion(false)
                 UserDataService.instance.logoutUser()
-                debugPrint(response.result.error as Any)
             }
         }
     }
@@ -111,8 +112,12 @@ class AuthService {
             "avatarName" : avatarName,
             "avatarColor" : avatarColor
         ]
+        let header = [
+            "Authorization": "Bearer \(AuthService.instance.authToken)",
+            "Content-Type" : "application/json; charset=utf-8"
+        ]
         
-        Alamofire.request(URL_USER_ADD, method: .post, parameters: body, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
+        Alamofire.request(URL_USER_ADD, method: .post, parameters: body, encoding: JSONEncoding.default, headers: header).responseJSON { (response) in
             if response.result.error == nil{
                 guard let data = response.data else {return}
                 do{
@@ -127,7 +132,6 @@ class AuthService {
                     UserDataService.instance.setUserData (id: id, avatarColor: avatarColor, avatarName: avatarName, email: email, name: name)
                 }
                 catch{
-                    debugPrint("Error reading json user add data")
                     UserDataService.instance.logoutUser()
                     completion(false)
                     return
@@ -146,7 +150,12 @@ class AuthService {
         let lowerCaseEmail = self.userEmail.lowercased()
         let url: String = "\(URL_FIND_BY_EMAIL)\(lowerCaseEmail)"
         
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
+        let header = [
+            "Authorization": "Bearer \(AuthService.instance.authToken)",
+            "Content-Type" : "application/json; charset=utf-8"
+        ]
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: header).responseJSON { (response) in
             if response.result.error == nil{
                 guard let data = response.data else {return}
                 do{
@@ -169,7 +178,42 @@ class AuthService {
             }
             else {
                 UserDataService.instance.logoutUser()
-                debugPrint(response.result.error as Any)
+                completion(false)
+            }
+        }
+    }
+    
+    func updateUser (name:String, email:String, completion: @escaping CompletionHandler){
+        if !AuthService.instance.isLoggedIn {return}
+        
+        let lowerCaseEmail = email.lowercased()
+        let url = "\(URL_UPDATE_USER)\(UserDataService.instance.id)"
+        
+        let body: [String: Any] = [
+            "name":name,
+            "email":lowerCaseEmail,
+            "avatarName": UserDataService.instance.avatarName,
+            "avatarColor": UserDataService.instance.avatarColor
+        ]
+        
+        let header = [
+            "Authorization": "Bearer \(AuthService.instance.authToken)",
+            "Content-Type" : "application/json; charset=utf-8"
+        ]
+        Alamofire.request(url, method: .put, parameters: body, encoding: JSONEncoding.default, headers: header).responseJSON { (response) in
+            if response.result.error == nil {
+                guard let data = response.data else {return}
+                do{
+                    let json = try JSON(data: data)
+                    
+                    UserDataService.instance.setUserData (id: UserDataService.instance.id, avatarColor: UserDataService.instance.avatarColor, avatarName: UserDataService.instance.avatarName, email: lowerCaseEmail, name: name)
+                }
+                catch{
+                    completion(false)
+                    return
+                }
+                completion(true)
+            } else {
                 completion(false)
             }
         }

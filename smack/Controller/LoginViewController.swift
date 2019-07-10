@@ -29,27 +29,31 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginPressed(_ sender: Any) {
-        spinner.isHidden = false
-        spinner.startAnimating()
         guard let email = userNameTxt.text, userNameTxt.text != "" else {return}
         guard let pass = passwordTxt.text, passwordTxt.text != "" else {return}
+        spinner.isHidden = false
+        spinner.startAnimating()
         
         AuthService.instance.loginUser(email: email, password: pass) { (success) in
             if success{
-                debugPrint(AuthService.instance.authToken)
                 AuthService.instance.findUserByEmail() { (success) in
-                    if success {
-                        debugPrint("found user")
+                    if success{
                         NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
+                        self.spinner.stopAnimating()
+                        self.spinner.isHidden = true
                         self.dismiss(animated: true, completion: nil)
                     }
-                    else{debugPrint("found user error")}
+                    else{
+                        self.present(CommonFunctions.instance.makeAlert(title: "Login Error", message: "Please try again", action: "OK"), animated: true, completion: nil)
+                        UserDataService.instance.logoutUser()
+                        NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
+                        self.spinner.stopAnimating()
+                        self.spinner.isHidden = true
+                    }
                 }
             }
             else{
-                let alert = UIAlertController(title: "Login Failed", message: "Please confirm your credentials", preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+            self.present(CommonFunctions.instance.makeAlert(title: "Invalid Login", message: "Please confirm your login credentials", action: "OK"), animated: true, completion: nil)
             }
         }
         spinner.stopAnimating()
